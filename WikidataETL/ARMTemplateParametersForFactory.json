@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "WikidataETL"
+		},
+		"WikidataAzStorage_accountKey": {
+			"value": ""
+		},
+		"WikidataAzStorage_properties_typeProperties_url": {
+			"value": "https://wikidatastore2021.dfs.core.windows.net"
+		},
+		"WikidataDumpServer_properties_typeProperties_url": {
+			"value": "https://dumps.wikimedia.org/wikidatawiki/entities/"
+		}
+	}
+}
