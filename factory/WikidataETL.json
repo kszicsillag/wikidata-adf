@@ -1,0 +1,9 @@
+{
+	"name": "WikidataETL",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "37cf1675-9989-4973-886e-2a9b1ebcb40d",
+		"tenantId": "6a3548ab-7570-4271-91a8-58da00697029"
+	}
+}
