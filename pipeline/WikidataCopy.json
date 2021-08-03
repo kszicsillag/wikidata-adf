@@ -41,13 +41,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_gew",
+						"referenceName": "WikidataImportHTTP_DS",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_gew",
+						"referenceName": "WikidataImportAzStorage_DS",
 						"type": "DatasetReference"
 					}
 				]

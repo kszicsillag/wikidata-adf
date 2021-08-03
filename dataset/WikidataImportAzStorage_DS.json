@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_gew",
+	"name": "WikidataImportAzStorage_DS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "WikidataAzStorage",
