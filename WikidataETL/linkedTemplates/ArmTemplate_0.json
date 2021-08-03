@@ -101,7 +101,33 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/WikidataCopy')]",
+			"name": "[concat(parameters('factoryName'), '/WikidataCompressedAzStorageBz2_DS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "WikidataAzStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "latest-all.json.bz2",
+						"fileSystem": "wikidataimport"
+					},
+					"compression": {
+						"type": "bzip2"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/WikidataAzStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WikidataImport')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -167,6 +193,77 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/WikidataImportHTTP_DS')]",
+				"[concat(variables('factoryId'), '/datasets/WikidataImportAzStorage_DS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WikidataDecompress')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "WikidataDecompressActivity",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "latest-all.json.bz2"
+							},
+							{
+								"name": "Destination",
+								"value": "wikidataimport//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"deleteFilesAfterCompletion": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "WikidataCompressedAzStorageBz2_DS",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "WikidataImportAzStorage_DS",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2021-08-02T19:12:53Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/WikidataCompressedAzStorageBz2_DS')]",
 				"[concat(variables('factoryId'), '/datasets/WikidataImportAzStorage_DS')]"
 			]
 		}
