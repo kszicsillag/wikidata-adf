@@ -1,5 +1,5 @@
 {
-	"name": "WikidataDecompressAzStorageBz2_DS",
+	"name": "WikidataCompressedAzStorageBz2_DS",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "WikidataAzStorage",

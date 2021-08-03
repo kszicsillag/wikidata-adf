@@ -45,7 +45,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "WikidataImportAzStorage_DS",
+						"referenceName": "WikidataCompressedAzStorageBz2_DS",
 						"type": "DatasetReference"
 					}
 				],
