@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "wikidatawiki/entities/latest-all.json.gz"
+				"relativeUrl": "wikidatawiki/entities/latest-all.json.bz2"
 			}
 		}
 	},
