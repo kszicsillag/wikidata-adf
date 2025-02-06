@@ -94,32 +94,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/WikidataCompressedAzStorageBz2_DS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "WikidataAzStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "latest-all.json.bz2",
-						"fileSystem": "wikidataimport"
-					},
-					"compression": {
-						"type": "bzip2"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/WikidataAzStorage')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/WikidataImportAzStorage_DS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
